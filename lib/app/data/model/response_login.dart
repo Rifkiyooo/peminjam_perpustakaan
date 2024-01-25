@@ -11,7 +11,7 @@ class ResponseLogin {
   ResponseLogin.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
-    data = json['DataLogin'] != null ? DataLogin.fromJson(json['DataLogin']) : null;
+    data = json['data'] != null ? DataLogin.fromJson(json['data']) : null;
   }
   int? status;
   String? message;
@@ -21,7 +21,7 @@ class ResponseLogin {
     final map = <String, dynamic>{};
     map['status'] = status;
     map['message'] = message;
-    if (DataLogin != null) {
+    if (data != null) {
       map['data'] = data?.toJson();
     }
     return map;

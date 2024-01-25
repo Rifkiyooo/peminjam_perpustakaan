@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peminjam_perpustakaan_kelas_b/app/routes/app_pages.dart';
 
 import '../../../data/constant/endpoint.dart';
 import '../../../data/provider/api_provider.dart';
@@ -41,16 +42,17 @@ post() async {
       final response = await ApiProvider.instance().post(Endpoint.register,
           data:
           {
-            "judul": namaController.text.toString(),
-            "penulis": usernameController.text.toString(),
-            "penerbit": telpController.text.toString(),
-            "tahun_terbit": alamatController.text.toString(),
-            "tahun_terbit": passwordController.text.toString()
+            "nama": namaController.text.toString(),
+            "username": usernameController.text.toString(),
+            "telp": telpController.text.toString(),
+            "alamat": alamatController.text.toString(),
+            "password": passwordController.text.toString()
           });
       if (response.statusCode == 201) {
-        Get.back();
+        Get.snackbar("Information", "Register Succes", backgroundColor: Colors.green);
+        Get.offAllNamed(Routes.LOGIN);
       } else {
-        Get.snackbar("Sorry", "Login gagal", backgroundColor: Colors.orange);
+        Get.snackbar("Sorry", "Register gagal", backgroundColor: Colors.orange);
       }
     }
     loading(false);
@@ -59,7 +61,7 @@ post() async {
     if (e.response != null) {
       if (e.response?.data != null) {
         Get.snackbar("sorry", "${e.response?.data['message']}",
-            backgroundColor: Colors.orange);
+            backgroundColor: Colors.red);
       }
     } else {
       Get.snackbar("Sorry", e.message ?? "", backgroundColor: Colors.red);

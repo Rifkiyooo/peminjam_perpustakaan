@@ -23,7 +23,7 @@ class LoginView extends GetView<LoginController> {
                 controller: controller.usernameController,
                 decoration: InputDecoration(hintText: "Masukkan Username"),
                 validator: (value) {
-                  if (value!.length > 10) {
+                  if (value!.isEmpty) {
                     return "username tidak boleh kosong";
                   }
                   return null;
@@ -33,7 +33,7 @@ class LoginView extends GetView<LoginController> {
                 controller: controller.passwordController,
                 decoration: InputDecoration(hintText: "Masukkan Password"),
                 validator: (value) {
-                  if (value!.length > 10) {
+                  if (value!.isEmpty) {
                     return "Password tidak boleh kosong";
                   }
                   return null;
